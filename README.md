@@ -95,7 +95,6 @@ When reserving seats, the system will ask the user if they require wheelchair-ac
 
 ```
 Do you need wheelchair accessible seats?
-
 ```
 If the user responds "yes", the system will search for available seats in accessible rows.
 
