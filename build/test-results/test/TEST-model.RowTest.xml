@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="model.RowTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2024-08-10T16:44:43" hostname="MacBook-Air-7" time="0.003">
+  <properties/>
+  <testcase name="reserveSeats()" classname="model.RowTest" time="0.001"/>
+  <testcase name="hasEnoughConsecutiveSeats()" classname="model.RowTest" time="0.0"/>
+  <testcase name="isWheelchairAccessible()" classname="model.RowTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
