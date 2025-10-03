@@ -6,7 +6,7 @@ import java.util.List;
  * @author Yitian Xu
  * This class provides services for managing reservations in a theater.
  */
-<span class="fc" id="L9">public class ReservationsService {</span>
+<span class="nc" id="L9">public class ReservationsService {</span>
 
     /**
      * Attempts to reserve a specified number of seats in the theater,
@@ -19,34 +19,34 @@ import java.util.List;
      * @return True if the seats were successfully reserved; false otherwise.
      */
     public boolean reserveSeats(Theater theater, int numSeats, String personName, boolean needsAccessible) {
-<span class="fc" id="L22">        List&lt;Row&gt; rows = theater.getRows();</span>
-<span class="fc" id="L23">        int centerRow = theater.getCenterRow();</span>
+<span class="nc" id="L22">        List&lt;Row&gt; rows = theater.getRows();</span>
+<span class="nc" id="L23">        int centerRow = theater.getCenterRow();</span>
 
-<span class="fc" id="L25">        Row bestRow = null;</span>
-<span class="fc" id="L26">        int bestRowDistance = Integer.MAX_VALUE;</span>
+<span class="nc" id="L25">        Row bestRow = null;</span>
+<span class="nc" id="L26">        int bestRowDistance = Integer.MAX_VALUE;</span>
 
         // Determine the best row for reservation
-<span class="fc bfc" id="L29" title="All 2 branches covered.">        for (int i = 0; i &lt; rows.size(); i++) {</span>
-<span class="fc" id="L30">            Row row = rows.get(i);</span>
-<span class="fc" id="L31">            int distanceFromCenter = Math.abs(i - centerRow);</span>
+<span class="nc bnc" id="L29" title="All 2 branches missed.">        for (int i = 0; i &lt; rows.size(); i++) {</span>
+<span class="nc" id="L30">            Row row = rows.get(i);</span>
+<span class="nc" id="L31">            int distanceFromCenter = Math.abs(i - centerRow);</span>
 
-<span class="fc bfc" id="L33" title="All 2 branches covered.">            if (row.hasEnoughConsecutiveSeats(numSeats)) {</span>
-<span class="fc bfc" id="L34" title="All 4 branches covered.">                if (row.isWheelchairAccessible() == needsAccessible || !needsAccessible) {</span>
-<span class="fc bfc" id="L35" title="All 2 branches covered.">                    if (distanceFromCenter &lt; bestRowDistance) {</span>
-<span class="fc" id="L36">                        bestRow = row;</span>
-<span class="fc" id="L37">                        bestRowDistance = distanceFromCenter;</span>
+<span class="nc bnc" id="L33" title="All 2 branches missed.">            if (row.hasEnoughConsecutiveSeats(numSeats)) {</span>
+<span class="nc bnc" id="L34" title="All 4 branches missed.">                if (row.isWheelchairAccessible() == needsAccessible || !needsAccessible) {</span>
+<span class="nc bnc" id="L35" title="All 2 branches missed.">                    if (distanceFromCenter &lt; bestRowDistance) {</span>
+<span class="nc" id="L36">                        bestRow = row;</span>
+<span class="nc" id="L37">                        bestRowDistance = distanceFromCenter;</span>
                     }
                 }
             }
         }
 
-<span class="fc bfc" id="L43" title="All 2 branches covered.">        if (bestRow != null) {</span>
-<span class="fc" id="L44">            bestRow.reserveSeats(numSeats, personName);</span>
-<span class="fc" id="L45">            System.out.println(&quot;I've reserved &quot; + numSeats + &quot; seats for you at &quot; + theater.getName() + &quot; in row &quot; + bestRow.get(0).toString() + &quot;, &quot; + personName + &quot;.&quot;);</span>
-<span class="fc" id="L46">            return true;</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">        if (bestRow != null) {</span>
+<span class="nc" id="L44">            bestRow.reserveSeats(numSeats, personName);</span>
+<span class="nc" id="L45">            System.out.println(&quot;I've reserved &quot; + numSeats + &quot; seats for you at &quot; + theater.getName() + &quot; in row &quot; + bestRow.get(0).toString() + &quot;, &quot; + personName + &quot;.&quot;);</span>
+<span class="nc" id="L46">            return true;</span>
         } else {
-<span class="fc" id="L48">            System.out.println(&quot;Sorry, we don’t have that many seats together for you.&quot;);</span>
-<span class="fc" id="L49">            return false;</span>
+<span class="nc" id="L48">            System.out.println(&quot;Sorry, we don’t have that many seats together for you.&quot;);</span>
+<span class="nc" id="L49">            return false;</span>
         }
     }
 
@@ -56,9 +56,9 @@ import java.util.List;
      * @param theater The theater whose seating arrangement is to be displayed.
      */
     public void showSeating(Theater theater) {
-<span class="fc bfc" id="L59" title="All 2 branches covered.">        for (Row row : theater.getRows()) {</span>
-<span class="fc" id="L60">            System.out.println(row.toString());</span>
-<span class="fc" id="L61">        }</span>
-<span class="fc" id="L62">    }</span>
+<span class="nc bnc" id="L59" title="All 2 branches missed.">        for (Row row : theater.getRows()) {</span>
+<span class="nc" id="L60">            System.out.println(row.toString());</span>
+<span class="nc" id="L61">        }</span>
+<span class="nc" id="L62">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

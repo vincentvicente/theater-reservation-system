@@ -2,6 +2,10 @@ plugins {
 // Build Java: https://docs.gradle.org/current/userguide/building_java_projects.html
     id 'java'
 
+// Spring Boot plugin
+    id 'org.springframework.boot' version '3.1.0'
+    id 'io.spring.dependency-management' version '1.1.0'
+
 // https://docs.gradle.org/current/userguide/pmd_plugin.html#header
     id 'pmd'
 
@@ -12,13 +16,30 @@ plugins {
 group 'CS 5004 - Summer 2024'
 version '1.0'
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
 repositories {
     mavenCentral()
 }
 
 dependencies {
+    // Spring Boot dependencies
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'com.h2database:h2'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    
+    // CORS support
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    
+    // Existing dependencies
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.0'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 pmd {

@@ -17,21 +17,29 @@ public class Row extends ArrayList&lt;Seat&gt; {
    * @param numberOfSeats The number of seats in the row.
    * @param wheelchairAccessible True if the row is wheelchair accessible, false otherwise.
    */
-<span class="fc" id="L20">  public Row(int rowNumber, int numberOfSeats, boolean wheelchairAccessible) {</span>
-<span class="fc" id="L21">    this.rowNumber = rowNumber;</span>
-<span class="fc" id="L22">    this.wheelchairAccessible = wheelchairAccessible;</span>
+<span class="nc" id="L20">  public Row(int rowNumber, int numberOfSeats, boolean wheelchairAccessible) {</span>
+<span class="nc" id="L21">    this.rowNumber = rowNumber;</span>
+<span class="nc" id="L22">    this.wheelchairAccessible = wheelchairAccessible;</span>
 
-<span class="fc bfc" id="L24" title="All 2 branches covered.">    for (int i = 0; i &lt; numberOfSeats; i++) {</span>
-<span class="fc" id="L25">      this.add(new Seat(Character.toString((char) ('A' + i))));</span>
+<span class="nc bnc" id="L24" title="All 2 branches missed.">    for (int i = 0; i &lt; numberOfSeats; i++) {</span>
+<span class="nc" id="L25">      this.add(new Seat(Character.toString((char) ('A' + i))));</span>
     }
-<span class="fc" id="L27">  }</span>
+<span class="nc" id="L27">  }</span>
+
+  /**
+   * Get the row number.
+   * @return The row number.
+   */
+  public int getRowNumber() {
+<span class="nc" id="L34">    return rowNumber;</span>
+  }
 
   /**
    * Check if the row is wheelchair accessible.
    * @return True if the row is wheelchair accessible, false otherwise.
    */
   public boolean isWheelchairAccessible() {
-<span class="fc" id="L34">    return wheelchairAccessible;</span>
+<span class="nc" id="L42">    return wheelchairAccessible;</span>
   }
 
   /**
@@ -40,19 +48,19 @@ public class Row extends ArrayList&lt;Seat&gt; {
    * @return True if there are enough consecutive seats, false otherwise.
    */
   public boolean hasEnoughConsecutiveSeats(int numSeats) {
-<span class="fc" id="L43">    int consecutiveSeats = 0;</span>
-<span class="fc bfc" id="L44" title="All 2 branches covered.">    for (Seat seat : this) {</span>
-<span class="fc bfc" id="L45" title="All 2 branches covered.">      if (!seat.isReserved()) {</span>
-<span class="fc" id="L46">        consecutiveSeats++;</span>
-<span class="fc bfc" id="L47" title="All 2 branches covered.">        if (numSeats == consecutiveSeats) {</span>
-<span class="fc" id="L48">          return true;</span>
+<span class="nc" id="L51">    int consecutiveSeats = 0;</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">    for (Seat seat : this) {</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">      if (!seat.isReserved()) {</span>
+<span class="nc" id="L54">        consecutiveSeats++;</span>
+<span class="nc bnc" id="L55" title="All 2 branches missed.">        if (numSeats == consecutiveSeats) {</span>
+<span class="nc" id="L56">          return true;</span>
         }
       } else {
-<span class="fc" id="L51">        consecutiveSeats = 0;</span>
+<span class="nc" id="L59">        consecutiveSeats = 0;</span>
       }
-<span class="fc" id="L53">    }</span>
+<span class="nc" id="L61">    }</span>
 
-<span class="fc" id="L55">    return false;</span>
+<span class="nc" id="L63">    return false;</span>
   }
 
   /**
@@ -61,38 +69,38 @@ public class Row extends ArrayList&lt;Seat&gt; {
    * @param personName The name of the person reserving the seats.
    */
   public void reserveSeats(int numSeats, String personName) {
-<span class="fc" id="L64">    int consecutiveSeats = 0;</span>
-<span class="fc bfc" id="L65" title="All 2 branches covered.">    for (Seat seat : this) {</span>
-<span class="fc bfc" id="L66" title="All 2 branches covered.">      if (!seat.isReserved()) {</span>
-<span class="fc" id="L67">        consecutiveSeats++;</span>
-<span class="fc bfc" id="L68" title="All 2 branches covered.">        if (consecutiveSeats == numSeats) {</span>
-<span class="fc bfc" id="L69" title="All 2 branches covered.">          for (int i = 0; i &lt; numSeats; i++) {</span>
-<span class="fc" id="L70">            this.get(this.indexOf(seat) - i).reserve(personName);</span>
+<span class="nc" id="L72">    int consecutiveSeats = 0;</span>
+<span class="nc bnc" id="L73" title="All 2 branches missed.">    for (Seat seat : this) {</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">      if (!seat.isReserved()) {</span>
+<span class="nc" id="L75">        consecutiveSeats++;</span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">        if (consecutiveSeats == numSeats) {</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">          for (int i = 0; i &lt; numSeats; i++) {</span>
+<span class="nc" id="L78">            this.get(this.indexOf(seat) - i).reserve(personName);</span>
           }
-<span class="fc" id="L72">          break;</span>
+<span class="nc" id="L80">          break;</span>
         }
       } else {
-<span class="fc" id="L75">        consecutiveSeats = 0;</span>
+<span class="nc" id="L83">        consecutiveSeats = 0;</span>
       }
-<span class="fc" id="L77">    }</span>
-<span class="fc" id="L78">  }</span>
+<span class="nc" id="L85">    }</span>
+<span class="nc" id="L86">  }</span>
 
   @Override
   public String toString() {
-<span class="fc" id="L82">    StringBuilder sb = new StringBuilder();</span>
-<span class="fc bfc" id="L83" title="All 2 branches covered.">    for (Seat seat : this) {</span>
-<span class="fc bfc" id="L84" title="All 2 branches covered.">      if (seat.toString().equals(&quot;_&quot;)) {</span>
-<span class="fc bfc" id="L85" title="All 2 branches covered.">        if (isWheelchairAccessible()) {</span>
-<span class="fc" id="L86">          sb.append(&quot;=&quot;).append(&quot; &quot;);</span>
+<span class="nc" id="L90">    StringBuilder sb = new StringBuilder();</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">    for (Seat seat : this) {</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">      if (seat.toString().equals(&quot;_&quot;)) {</span>
+<span class="nc bnc" id="L93" title="All 2 branches missed.">        if (isWheelchairAccessible()) {</span>
+<span class="nc" id="L94">          sb.append(&quot;=&quot;).append(&quot; &quot;);</span>
         } else {
-<span class="fc" id="L88">          sb.append(&quot;_&quot;).append(&quot; &quot;);</span>
+<span class="nc" id="L96">          sb.append(&quot;_&quot;).append(&quot; &quot;);</span>
         }
       } else {
-<span class="fc" id="L91">        sb.append(&quot;X&quot;).append(&quot; &quot;);</span>
+<span class="nc" id="L99">        sb.append(&quot;X&quot;).append(&quot; &quot;);</span>
       }
-<span class="fc" id="L93">    }</span>
+<span class="nc" id="L101">    }</span>
 
-<span class="fc" id="L95">    return sb.toString().trim();</span>
+<span class="nc" id="L103">    return sb.toString().trim();</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

@@ -27,6 +27,14 @@ public class Row extends ArrayList<Seat> {
   }
 
   /**
+   * Get the row number.
+   * @return The row number.
+   */
+  public int getRowNumber() {
+    return rowNumber;
+  }
+
+  /**
    * Check if the row is wheelchair accessible.
    * @return True if the row is wheelchair accessible, false otherwise.
    */

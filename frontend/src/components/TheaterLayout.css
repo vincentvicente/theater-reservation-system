@@ -1,0 +1,59 @@
+/* Additional styles for TheaterLayout component */
+.theater-layout .row {
+  margin-bottom: 12px;
+}
+
+.theater-layout .seat {
+  font-family: 'Courier New', monospace;
+}
+
+.theater-layout .stage {
+  position: relative;
+  overflow: hidden;
+}
+
+.theater-layout .stage::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Enhanced seat interactions */
+.seat.available:hover {
+  background: #d9f7be;
+  border-color: #73d13d;
+  transform: scale(1.05);
+}
+
+.seat.accessible:hover {
+  background: #bae7ff;
+  border-color: #40a9ff;
+  transform: scale(1.05);
+}
+
+/* Loading animation */
+.theater-layout.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.theater-layout.loading::after {
+  content: 'Loading...';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+  color: #1890ff;
+}
+

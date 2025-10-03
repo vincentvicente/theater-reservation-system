@@ -18,28 +18,28 @@ public class Theater {
    * @param numRows The number of rows in the theater.
    * @param seatsPerRow The number of seats in each row.
    */
-<span class="fc" id="L21">  public Theater(String name, int numRows, int seatsPerRow, List&lt;Integer&gt; accessibleRows) {</span>
-<span class="fc" id="L22">    this.name = name;</span>
-<span class="fc" id="L23">    this.rows = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L21">  public Theater(String name, int numRows, int seatsPerRow, List&lt;Integer&gt; accessibleRows) {</span>
+<span class="nc" id="L22">    this.name = name;</span>
+<span class="nc" id="L23">    this.rows = new ArrayList&lt;&gt;();</span>
 
-<span class="pc bpc" id="L25" title="1 of 4 branches missed.">    if (accessibleRows == null || accessibleRows.size() == 0) {</span>
-<span class="fc" id="L26">      throw new IllegalArgumentException(&quot;At least one row must be wheelchair accessible.&quot;);</span>
+<span class="nc bnc" id="L25" title="All 4 branches missed.">    if (accessibleRows == null || accessibleRows.size() == 0) {</span>
+<span class="nc" id="L26">      throw new IllegalArgumentException(&quot;At least one row must be wheelchair accessible.&quot;);</span>
     }
 
-<span class="fc bfc" id="L29" title="All 2 branches covered.">    for (int i = 1; i &lt;= numRows; i++) {</span>
-<span class="fc" id="L30">      boolean isAccessible = accessibleRows.contains(i);</span>
-<span class="fc" id="L31">      rows.add(new Row(i, seatsPerRow, isAccessible));</span>
+<span class="nc bnc" id="L29" title="All 2 branches missed.">    for (int i = 1; i &lt;= numRows; i++) {</span>
+<span class="nc" id="L30">      boolean isAccessible = accessibleRows.contains(i);</span>
+<span class="nc" id="L31">      rows.add(new Row(i, seatsPerRow, isAccessible));</span>
     }
 
-<span class="fc" id="L34">    this.centerRow = numRows / 2;</span>
-<span class="fc" id="L35">  }</span>
+<span class="nc" id="L34">    this.centerRow = numRows / 2;</span>
+<span class="nc" id="L35">  }</span>
 
   /**
    * Get the name of the theater.
    * @return The name of the theater.
    */
   public String getName() {
-<span class="fc" id="L42">    return name;</span>
+<span class="nc" id="L42">    return name;</span>
   }
 
   /**
@@ -47,7 +47,7 @@ public class Theater {
    * @return The list of rows in the theater.
    */
   public List&lt;Row&gt; getRows() {
-<span class="fc" id="L50">    return rows;</span>
+<span class="nc" id="L50">    return rows;</span>
   }
 
   /**
@@ -55,7 +55,7 @@ public class Theater {
    * @return The row number of the center row.
    */
   public int getCenterRow() {
-<span class="fc" id="L58">    return centerRow;</span>
+<span class="nc" id="L58">    return centerRow;</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
