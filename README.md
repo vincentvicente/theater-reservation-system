@@ -17,124 +17,180 @@ A full-stack theater seat reservation system with React frontend and Spring Boot
 - **Java 17+** with Spring Boot 3.1
 - **Gradle** build system
 - **H2 Database** (in-memory)
-- **JUnit 5** testing
-- **JaCoCo** code coverage
-- **PMD** code quality
+- **RESTful API** with JSON responses
+- **CORS** enabled for frontend integration
 
 ### Frontend
 - **React 18** with modern hooks
 - **Ant Design** UI components
-- **Axios** for API calls
-- **CSS3** with responsive design
+- **Axios** for API communication
+- **Responsive CSS** for mobile support
+
+## Quick Start
+
+### Prerequisites
+- Java 17 or higher
+- Node.js 16 or higher
+- Git
+
+### Backend Setup
+```bash
+# Set Java 17 (if you have multiple Java versions)
+export JAVA_HOME=/path/to/java17
+
+# Build and run Spring Boot application
+./gradlew bootRun
+```
+
+The backend will start at `http://localhost:8080`
+
+### Frontend Setup
+```bash
+# Navigate to frontend directory
+cd frontend
+
+# Install dependencies
+npm install
+
+# Start development server
+npm start
+```
+
+The frontend will start at `http://localhost:3000`
+
+## API Endpoints
+
+### Theater Information
+- `GET /api/theater` - Get theater details and seating layout
+- `GET /api/seating` - Get current seating arrangement
+
+### Reservations
+- `POST /api/reserve` - Reserve seats
+  ```json
+  {
+    "numSeats": 3,
+    "personName": "John Doe",
+    "needsAccessible": false
+  }
+  ```
 
 ## Project Structure
 
 ```
 theater-reservation-system/
 ├── src/main/java/
-│   ├── model/                 # Core business models
-│   ├── controller/           # REST API controllers
-│   ├── service/             # Business logic services
-│   ├── dto/                 # Data transfer objects
-│   └── TheaterReservationApplication.java
-├── src/main/resources/
-│   └── application.yml       # Spring Boot configuration
-├── frontend/                # React application
+│   ├── TheaterReservationApplication.java
+│   ├── controller/
+│   │   └── TheaterController.java
+│   ├── service/
+│   │   └── TheaterService.java
+│   ├── dto/
+│   │   ├── ReservationRequest.java
+│   │   ├── ReservationResponse.java
+│   │   ├── SeatDto.java
+│   │   ├── RowDto.java
+│   │   └── TheaterDto.java
+│   └── model/
+│       ├── Theater.java
+│       ├── Row.java
+│       ├── Seat.java
+│       └── ReservationsService.java
+├── frontend/
 │   ├── src/
-│   │   ├── components/       # React components
-│   │   ├── services/         # API services
-│   │   └── App.js           # Main React app
+│   │   ├── components/
+│   │   │   ├── TheaterLayout.jsx
+│   │   │   └── ReservationForm.jsx
+│   │   ├── services/
+│   │   │   └── theaterService.js
+│   │   └── App.js
 │   └── package.json
-└── build.gradle             # Gradle configuration
+├── backend/
+│   ├── server.js
+│   └── package.json
+└── build.gradle
 ```
 
-## Quick Start
+## Core Features
 
-### Prerequisites
-- Java 17+
-- Node.js 16+
-- npm or yarn
+### Smart Seat Assignment
+The system automatically finds the best available seats based on:
+- **Proximity to center row** - Prioritizes seats closer to the center
+- **Consecutive availability** - Ensures all requested seats are together
+- **Accessibility requirements** - Filters for wheelchair-accessible rows when needed
 
-### Backend Setup
-```bash
-# Build and run Spring Boot backend
-./gradlew bootRun
+### Wheelchair Accessibility
+- Rows 1, 5, and 10 are wheelchair accessible
+- System automatically detects and assigns accessible seats when requested
+- Visual indicators show accessible seating options
 
-# Backend will be available at http://localhost:8080
-```
-
-### Frontend Setup
-```bash
-# Install dependencies
-cd frontend
-npm install
-
-# Start React development server
-npm start
-
-# Frontend will be available at http://localhost:3000
-```
-
-### Full Stack Development
-```bash
-# Terminal 1: Start backend
-./gradlew bootRun
-
-# Terminal 2: Start frontend
-cd frontend && npm start
-```
-
-## API Endpoints
-
-- `GET /api/theater` - Get theater information
-- `POST /api/reserve` - Reserve seats
-- `GET /api/seating` - Get current seating layout
-
-## Development Commands
-
-```bash
-# Backend
-./gradlew build          # Build project
-./gradlew test           # Run tests
-./gradlew jacocoTestReport # Generate coverage report
-./gradlew bootRun        # Run Spring Boot app
-
-# Frontend
-npm start               # Start development server
-npm run build          # Build for production
-npm test               # Run tests
-```
-
-## Features Overview
-
-### 🎯 Smart Seat Assignment
-- Automatically selects best available seats
-- Prioritizes center rows for better viewing
-- Considers wheelchair accessibility requirements
-
-### 🎨 Modern UI/UX
-- Interactive seat selection
-- Real-time availability updates
-- Responsive design for all devices
-- Intuitive reservation form
-
-### ♿ Accessibility Features
-- Dedicated wheelchair accessible rows
-- Clear visual indicators
-- Accessibility-first design principles
+### Real-time Updates
+- Live seating layout updates after reservations
+- Immediate feedback on reservation success/failure
+- Interactive seat selection with visual feedback
 
 ## Testing
 
+### Backend Tests
 ```bash
-# Run all tests
+# Run Spring Boot tests
 ./gradlew test
 
-# Generate test coverage report
+# Run with coverage
 ./gradlew jacocoTestReport
-# View report at: build/jacocoHtml/index.html
 ```
 
-## Authors
+### Frontend Tests
+```bash
+cd frontend
+npm test
+```
+
+## Development
+
+### Adding New Features
+1. **Backend**: Add new endpoints in `TheaterController`
+2. **Frontend**: Create new components in `src/components/`
+3. **Integration**: Update `theaterService.js` for API calls
+
+### Code Quality
+- **PMD** static analysis for Java code
+- **JaCoCo** code coverage reporting
+- **ESLint** for JavaScript/React code
+
+## Deployment
+
+### Production Build
+```bash
+# Backend
+./gradlew bootJar
+
+# Frontend
+cd frontend
+npm run build
+```
+
+### Docker Support (Optional)
+```dockerfile
+# Backend Dockerfile
+FROM openjdk:17-jdk-slim
+COPY build/libs/*.jar app.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "/app.jar"]
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests for new functionality
+5. Submit a pull request
+
+## License
+
+This project is licensed under the MIT License.
+
+## Team
 
 - **Qiyuan Zhu** - Main application & Spring Boot integration
 - **Shaohua Guo** - Core business models (Theater, Row, Seat)
