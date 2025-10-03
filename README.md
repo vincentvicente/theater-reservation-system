@@ -192,26 +192,6 @@ cd frontend
 npm run build
 ```
 
-### Docker Support (Optional)
-```dockerfile
-# Backend Dockerfile
-FROM openjdk:17-jdk-slim
-COPY build/libs/*.jar app.jar
-EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "/app.jar"]
-```
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests for new functionality
-5. Submit a pull request
-
-## License
-
-This project is licensed under the MIT License.
 
 ## Team
 
