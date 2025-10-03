@@ -11,6 +11,29 @@ A full-stack theater seat reservation system with React frontend and Spring Boot
 - 🔄 **Real-time Updates** - Live seating layout updates
 - ✅ **Complete Testing** - Unit tests and code coverage
 
+## Screenshots
+
+| Feature | Screenshot | Description |
+|---------|------------|-------------|
+| **Theater Layout** | ![Theater Layout](screenshots/theater-layout.png) | Interactive seat selection interface |
+| **Reservation Form** | ![Reservation Form](screenshots/reservation-form.png) | User-friendly booking form |
+| **Success Message** | ![Success](screenshots/reservation-success.png) | Confirmation of successful booking |
+
+## Project Structure
+
+```
+theater-reservation-system/
+├── backend/                 # Spring Boot backend
+│   ├── src/main/java/      # Java source code
+│   ├── src/test/java/      # Test code
+│   └── build.gradle        # Build configuration
+├── frontend/               # React frontend
+│   ├── src/               # React components
+│   ├── public/            # Static assets
+│   └── package.json       # Dependencies
+└── screenshots/           # UI screenshots
+```
+
 ## Tech Stack
 
 ### Backend

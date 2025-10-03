@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TheaterController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW9</a> &gt; <a href="index.source.html" class="el_package">com.theater.controller</a> &gt; <span class="el_source">TheaterController.java</span></div><h1>TheaterController.java</h1><pre class="source lang-java linenums">package com.theater.controller;
+
+import com.theater.dto.*;
+import com.theater.model.*;
+import com.theater.service.TheaterService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import jakarta.validation.Valid;
+import java.util.List;
+import java.util.stream.Collectors;
+
+/**
+ * REST Controller for Theater Reservation System
+ */
+@RestController
+@RequestMapping(&quot;/api&quot;)
+@CrossOrigin(origins = &quot;http://localhost:3000&quot;) // Allow React frontend
+<span class="nc" id="L20">public class TheaterController {</span>
+    
+    @Autowired
+    private TheaterService theaterService;
+    
+    /**
+     * Get theater information and seating layout
+     */
+    @GetMapping(&quot;/theater&quot;)
+    public ResponseEntity&lt;TheaterDto&gt; getTheater() {
+<span class="nc" id="L30">        Theater theater = theaterService.getTheater();</span>
+<span class="nc" id="L31">        TheaterDto theaterDto = convertToTheaterDto(theater);</span>
+<span class="nc" id="L32">        return ResponseEntity.ok(theaterDto);</span>
+    }
+    
+    /**
+     * Reserve seats
+     */
+    @PostMapping(&quot;/reserve&quot;)
+    public ResponseEntity&lt;ReservationResponse&gt; reserveSeats(@Valid @RequestBody ReservationRequest request) {
+        try {
+<span class="nc" id="L41">            boolean success = theaterService.reserveSeats(</span>
+<span class="nc" id="L42">                request.getNumSeats(), </span>
+<span class="nc" id="L43">                request.getPersonName(), </span>
+<span class="nc" id="L44">                request.getNeedsAccessible()</span>
+            );
+            
+<span class="nc bnc" id="L47" title="All 2 branches missed.">            if (success) {</span>
+<span class="nc" id="L48">                return ResponseEntity.ok(new ReservationResponse(</span>
+                    true, 
+                    &quot;Seats reserved successfully!&quot;, 
+                    &quot;Check the seating layout for details&quot;
+                ));
+            } else {
+<span class="nc" id="L54">                return ResponseEntity.ok(new ReservationResponse(</span>
+                    false, 
+                    &quot;Sorry, we don't have that many seats together for you.&quot;, 
+                    null
+                ));
+            }
+<span class="nc" id="L60">        } catch (Exception e) {</span>
+<span class="nc" id="L61">            return ResponseEntity.ok(new ReservationResponse(</span>
+                false, 
+<span class="nc" id="L63">                &quot;Error processing reservation: &quot; + e.getMessage(), </span>
+                null
+            ));
+        }
+    }
+    
+    /**
+     * Get current seating layout
+     */
+    @GetMapping(&quot;/seating&quot;)
+    public ResponseEntity&lt;List&lt;RowDto&gt;&gt; getSeating() {
+<span class="nc" id="L74">        Theater theater = theaterService.getTheater();</span>
+<span class="nc" id="L75">        List&lt;RowDto&gt; rows = theater.getRows().stream()</span>
+<span class="nc" id="L76">            .map(this::convertToRowDto)</span>
+<span class="nc" id="L77">            .collect(Collectors.toList());</span>
+<span class="nc" id="L78">        return ResponseEntity.ok(rows);</span>
+    }
+    
+    /**
+     * Convert Theater to TheaterDto
+     */
+    private TheaterDto convertToTheaterDto(Theater theater) {
+<span class="nc" id="L85">        List&lt;RowDto&gt; rowDtos = theater.getRows().stream()</span>
+<span class="nc" id="L86">            .map(this::convertToRowDto)</span>
+<span class="nc" id="L87">            .collect(Collectors.toList());</span>
+        
+<span class="nc" id="L89">        return new TheaterDto(theater.getName(), rowDtos, theater.getCenterRow());</span>
+    }
+    
+    /**
+     * Convert Row to RowDto
+     */
+    private RowDto convertToRowDto(Row row) {
+<span class="nc" id="L96">        List&lt;SeatDto&gt; seatDtos = row.stream()</span>
+<span class="nc" id="L97">            .map(seat -&gt; new SeatDto(</span>
+<span class="nc" id="L98">                seat.getName(),</span>
+<span class="nc" id="L99">                seat.isReserved(),</span>
+<span class="nc" id="L100">                seat.getReservedFor(),</span>
+<span class="nc" id="L101">                row.isWheelchairAccessible()</span>
+            ))
+<span class="nc" id="L103">            .collect(Collectors.toList());</span>
+        
+<span class="nc" id="L105">        return new RowDto(row.getRowNumber(), row.isWheelchairAccessible(), seatDtos);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

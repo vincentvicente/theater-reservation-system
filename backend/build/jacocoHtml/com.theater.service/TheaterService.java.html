@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TheaterService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW9</a> &gt; <a href="index.source.html" class="el_package">com.theater.service</a> &gt; <span class="el_source">TheaterService.java</span></div><h1>TheaterService.java</h1><pre class="source lang-java linenums">package com.theater.service;
+
+import com.theater.model.*;
+import org.springframework.stereotype.Service;
+
+import java.util.Arrays;
+import java.util.List;
+
+/**
+ * Service layer for Theater operations
+ */
+@Service
+public class TheaterService {
+    
+    private Theater theater;
+    private ReservationsService reservationsService;
+    
+<span class="nc" id="L18">    public TheaterService() {</span>
+<span class="nc" id="L19">        initializeTheater();</span>
+<span class="nc" id="L20">    }</span>
+    
+    /**
+     * Initialize the theater with default configuration
+     */
+    private void initializeTheater() {
+<span class="nc" id="L26">        String theaterName = &quot;Roxy&quot;;</span>
+<span class="nc" id="L27">        int numRows = 15;</span>
+<span class="nc" id="L28">        int seatsPerRow = 10;</span>
+<span class="nc" id="L29">        List&lt;Integer&gt; accessibleRows = Arrays.asList(1, 5, 10);</span>
+        
+<span class="nc" id="L31">        this.theater = new Theater(theaterName, numRows, seatsPerRow, accessibleRows);</span>
+<span class="nc" id="L32">        this.reservationsService = new ReservationsService();</span>
+<span class="nc" id="L33">    }</span>
+    
+    /**
+     * Get the theater instance
+     */
+    public Theater getTheater() {
+<span class="nc" id="L39">        return theater;</span>
+    }
+    
+    /**
+     * Reserve seats in the theater
+     */
+    public boolean reserveSeats(int numSeats, String personName, boolean needsAccessible) {
+<span class="nc" id="L46">        return reservationsService.reserveSeats(theater, numSeats, personName, needsAccessible);</span>
+    }
+    
+    /**
+     * Get current seating layout
+     */
+    public void showSeating() {
+<span class="nc" id="L53">        reservationsService.showSeating(theater);</span>
+<span class="nc" id="L54">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

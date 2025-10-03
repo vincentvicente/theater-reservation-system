@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Theater.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW9</a> &gt; <a href="index.source.html" class="el_package">com.theater.model</a> &gt; <span class="el_source">Theater.java</span></div><h1>Theater.java</h1><pre class="source lang-java linenums">package com.theater.model;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * This class represents a theater.
+ * @author Shaohua Guo
+ */
+public class Theater {
+  private String name;
+  private List&lt;Row&gt; rows;
+  private int centerRow;
+
+  /**
+   * Constructor for theater.
+   * @param name The name of the theater.
+   * @param numRows The number of rows in the theater.
+   * @param seatsPerRow The number of seats in each row.
+   */
+<span class="fc" id="L21">  public Theater(String name, int numRows, int seatsPerRow, List&lt;Integer&gt; accessibleRows) {</span>
+<span class="fc" id="L22">    this.name = name;</span>
+<span class="fc" id="L23">    this.rows = new ArrayList&lt;&gt;();</span>
+
+<span class="pc bpc" id="L25" title="1 of 4 branches missed.">    if (accessibleRows == null || accessibleRows.size() == 0) {</span>
+<span class="fc" id="L26">      throw new IllegalArgumentException(&quot;At least one row must be wheelchair accessible.&quot;);</span>
+    }
+
+<span class="fc bfc" id="L29" title="All 2 branches covered.">    for (int i = 1; i &lt;= numRows; i++) {</span>
+<span class="fc" id="L30">      boolean isAccessible = accessibleRows.contains(i);</span>
+<span class="fc" id="L31">      rows.add(new Row(i, seatsPerRow, isAccessible));</span>
+    }
+
+<span class="fc" id="L34">    this.centerRow = numRows / 2;</span>
+<span class="fc" id="L35">  }</span>
+
+  /**
+   * Get the name of the theater.
+   * @return The name of the theater.
+   */
+  public String getName() {
+<span class="fc" id="L42">    return name;</span>
+  }
+
+  /**
+   * Get the list of rows in the theater.
+   * @return The list of rows in the theater.
+   */
+  public List&lt;Row&gt; getRows() {
+<span class="fc" id="L50">    return rows;</span>
+  }
+
+  /**
+   * Get the central row number of the theater
+   * @return The row number of the center row.
+   */
+  public int getCenterRow() {
+<span class="fc" id="L58">    return centerRow;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

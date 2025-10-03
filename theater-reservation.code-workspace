@@ -1,0 +1,19 @@
+{
+    "folders": [
+        {
+            "name": "Backend",
+            "path": "backend"
+        },
+        {
+            "name": "Frontend",
+            "path": "frontend"
+        }
+    ],
+    "settings": {
+        "java.configuration.updateBuildConfiguration": "automatic",
+        "git.ignoreLimitWarning": true,
+        "java.compile.nullAnalysis.mode": "automatic"
+    }
+}
+
+

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="model.SeatTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2025-10-03T18:23:38" hostname="MacBook-Pro.local" time="0.003">
+  <properties/>
+  <testcase name="isReserved()" classname="model.SeatTest" time="0.0"/>
+  <testcase name="testToString()" classname="model.SeatTest" time="0.001"/>
+  <testcase name="getName()" classname="model.SeatTest" time="0.0"/>
+  <testcase name="testHashCode()" classname="model.SeatTest" time="0.0"/>
+  <testcase name="reserve()" classname="model.SeatTest" time="0.0"/>
+  <testcase name="testEquals()" classname="model.SeatTest" time="0.0"/>
+  <testcase name="getReservedFor()" classname="model.SeatTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
